@@ -63,7 +63,7 @@ export default function Home({ posts } : InferGetStaticPropsType<typeof getStati
         </Link>
         <List>
           {posts.map((post) => (
-            <Link href="posts/[id]" as={`/posts/${post.id}`}>
+            <Link key={Math.random()} href="posts/[id]" as={`/posts/${post.id}`}>
               <ListItem key={post.id}>
                 <PostTitle>{post.title}</PostTitle>
               </ListItem>
