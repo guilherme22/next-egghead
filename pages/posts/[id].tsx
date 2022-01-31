@@ -1,14 +1,19 @@
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
 import { Article, BlogpostImage} from '@components/Article';
-import { Post } from '../index';
+import type { Post } from '../index';
 
 export default function BlogPost( { post }: InferGetStaticPropsType< typeof getStaticProps>) {
-
+    const { title, body } = post;
     return (
         <Article>
-            <h1>{post.title} </h1>
+            <Head>
+                <title>{title}</title>
+                <meta property='og:title' content={title}></meta>
+            </Head>
+            <h1>{title} </h1>
             <BlogpostImage src="/fun_image.jpg"></BlogpostImage>
-             <p> {post.body}</p>
+             <p> {body}</p>
         </Article>
     );
 }
